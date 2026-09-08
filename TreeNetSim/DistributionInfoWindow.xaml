@@ -1,0 +1,70 @@
+﻿<Window x:Class="TreeNetSim.DistributionInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Справка по распределениям" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <TextBlock Text="Типы распределений" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <Border Background="#F0F0F0" Padding="15" Margin="0,0,0,15" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Детерминированное" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock TextWrapping="Wrap">
+                        Интервалы строго фиксированы: 5.0 → 5.0 → 5.0 → 5.0 мс
+                        <LineBreak/>
+                        <Bold>Применение:</Bold> Базовое тестирование, проверка алгоритмов
+                        <LineBreak/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#E3F2FD" Padding="15" Margin="0,0,0,15" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Экспоненциальное (Пуассон)" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock TextWrapping="Wrap">
+                        Стандарт для моделирования сетевых событий. Интервалы: 2.3 → 7.1 → 3.8 → 9.2 мс
+                        <LineBreak/>
+                        <Bold>Формула:</Bold> X = -ln(U) × λ, где U ~ Uniform(0,1)
+                        <LineBreak/>
+                        <Bold>Применение:</Bold> Общий сетевой трафик, теория очередей
+                        <LineBreak/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#FFF3E0" Padding="15" Margin="0,0,0,15" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Парето (тяжёлый хвост)" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock TextWrapping="Wrap">
+                        Моделирует всплески: 1.2 → 0.8 → 23.4 → 1.5 → 0.6 → 47.8 мс (редкие большие значения!)
+                        <LineBreak/>
+                        <Bold>Формула:</Bold> X = x_min / U^(1/α)
+                        <LineBreak/>
+                        <Bold>Параметр α:</Bold> 1.16 (web), 1.5 (P2P), 2.0 (умеренный)
+                        <LineBreak/>
+                        <Bold>Применение:</Bold> Web-трафик, P2P сети, видеопотоки
+                        <LineBreak/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#E8F5E9" Padding="15" Margin="0,0,0,15" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Нормальное (Гаусса)" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock TextWrapping="Wrap">
+                        Симметричное "колокол": 4.8 → 5.2 → 4.1 → 6.3 → 5.0 мс (вокруг среднего)
+                        <LineBreak/>
+                        <Bold>Формула:</Bold> Box-Muller трансформация
+                        <LineBreak/>
+                        <Bold>Применение:</Bold> Jitter, задержки в каналах, измерения
+                        <LineBreak/>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Button Content="Закрыть" Width="100" Height="35" HorizontalAlignment="Right"
+                    Click="BtnClose_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
